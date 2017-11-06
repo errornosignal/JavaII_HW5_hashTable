@@ -102,37 +102,38 @@ import java.util.*;
 //        }
 //}
 
+////////////////////////////////////////////////////////////////////////////////////////////////
+//public class Main
+//{
+//    public static void main(String[] args)
+//    {
+//        System.out.println("JavaII_HW5_hashTable" + "\n");
+//
+//        final int kTO_REMOVE = 20000;
+//
+//        //add values to HashSet
+//        HashTable<Integer, Double> doubleSet = new HashTable<>();
+//
+//        //create random doubles
+//        RandomDoubleGenerator.getRandomDoubles();
+//
+//        //add pre-defined amount of key/values pairs to table
+//        for (int i = 0; i < RandomDoubleGenerator.kDOUBLES_TO_GENERATE; i++)
+//        {
+//            doubleSet.put(i, RandomDoubleGenerator.randomDoubleList.get(i));
+//        }
+//
+//        HashTable.dump();
 
-public class Main
-{
-
-    public static void main(String[] args)
-    {
-
-        System.out.println("JavaII_HW5_hashTable" + "\n");
-
-        final int kTO_REMOVE = 20000;
-
-        //add values to HashSet
-        Hashtable<Integer, Double> doubleSet = new Hashtable<>();
-
-        //create random doubles
-        randomDoubleGenerator.getRandomDoubles();
-
-        //add pre-defined amount of key/values pairs to table
-        for (int i = 0; i < randomDoubleGenerator.kDOUBLES_TO_GENERATE; i++)
-        {
-            doubleSet.put(i, randomDoubleGenerator.randomDoubleList.get(i));
-        }
-
-        Enumeration names;
-        names = doubleSet.keys();
-
-        while (names.hasMoreElements())
-        {
-            Integer key = (Integer) names.nextElement();
-            System.out.println("[" + key + " / " + doubleSet.get(key));
-        }
+/////////////////////////////////////////////////////////////////////////////////////////////////
+//        Enumeration names;
+//        names = doubleSet.keys();
+//
+//        while (names.hasMoreElements())
+//        {
+//            Integer key = (Integer) names.nextElement();
+//            System.out.println("[" + key + " / " + doubleSet.get(key));
+//        }
 
 
 //        //remove pre-defined amount of key/values pairs from table
@@ -172,5 +173,5 @@ public class Main
 //        System.out.println(stringSet.contains("Microcomputers: the unredeemed lollipop..."));
 //        System.out.println("");
 
-    }
-}
+//    }
+//}

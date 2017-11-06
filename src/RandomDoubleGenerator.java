@@ -1,9 +1,9 @@
 import java.util.ArrayList;
 import java.util.Collections;
 
-class randomDoubleGenerator
+class RandomDoubleGenerator
 {
-    final static int kDOUBLES_TO_GENERATE = 100000; //total number of doubles to generate
+    final static int kDOUBLES_TO_GENERATE = 100; //total number of doubles to generate
     static ArrayList<Double> randomDoubleList = new ArrayList<>();
 
     static void getRandomDoubles()

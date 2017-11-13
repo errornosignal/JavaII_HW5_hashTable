@@ -1,4 +1,4 @@
-public interface MySet<T,U> {
-    boolean put(U element);
-    boolean contains(U element);
+public interface MySet<T> {
+    boolean put(T element);
+    boolean contains(T element);
 }

@@ -1,6 +1,10 @@
+
 import java.util.ArrayList;
 import java.util.Collections;
 
+/**
+ * randomDoubleGenerator
+ */
 class randomDoubleGenerator
 {
     final static int kDOUBLES_TO_GENERATE = 100000; //total number of doubles to generate

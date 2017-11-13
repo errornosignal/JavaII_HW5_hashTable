@@ -1,6 +1,6 @@
 //import java.util.Map;
 //
-//public class MyHashTable<T,U> implements Map<T,U>
+//public class HashTable<T> implements MySet<T>
 //{
 //
 //    private Object[] table;
@@ -11,12 +11,12 @@
 //
 //    private static final double LOAD_FACTOR = .6;
 //
-//    public MyHashTable(int capacity) {
+//    public MyHashSet(int capacity) {
 //        this.table = new Object[Math.max(capacity, DEFAULT_CAPACITY)];
 //        this.size = 0;
 //    }
 //
-//    public MyHashTable() {
+//    public MyHashSet() {
 //        this(DEFAULT_CAPACITY);
 //    }
 //

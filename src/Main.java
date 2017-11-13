@@ -1,176 +1,104 @@
+
+import java.io.*;
 import java.util.*;
 
 /**
  * JavaII_HW5_hashTable
  * Main Class
- * Class for testing contains() and removes() methods on an array-based binary search tree
+ * For testing Hash Tables
  * @author Reid Nolan
- * @since 11/05/2017
+ * @since 11/07/2017
  * @version 1.0
- *
  */
-//public class Main
-//{
-//    /**
-//     *
-//     * @param args args
-//     */
-//    public static void main(String[] args)
-//    {
-//        System.out.println("JavaII_HW5_hashTable" + "\n");
-//
-//        final int kTO_REMOVE = 20000;
-//
-//        //add values to HashSet
-//        Hashtable<Integer, Double> doubleSet = new Hashtable<>();
-//
-//        //create random doubles
-//        randomDoubleGenerator.getRandomDoubles();
-//
-//        //add pre-defined amount of key/values pairs to table
-//        for(int i = 0; i < randomDoubleGenerator.kDOUBLES_TO_GENERATE; i++)
-//        {
-//            doubleSet.put(i, randomDoubleGenerator.randomDoubleList.get(i));
-//        }
-//
-//        //remove pre-defined amount of key/values pairs from table
-//        for (int i = kTO_REMOVE; i >= 0; i--)
-//        {
-//            doubleSet.remove(i);
-//        }
-//
-//        //print key/value pairs to console
-//        for(Map.Entry<Integer, Double> entry : doubleSet.entrySet())
-//        {
-//            Integer key = entry.getKey();
-//            Double value = entry.getValue();
-//            System.out.println("[" + key + " = " + value + "]");
-//        }
-//
-//
-//        //randomDoubleGenerator.getRandomDoubles();
-//
-//
-////        //remove values from HashSet
-////        for(int i = 0; i < 20000; i++)
-////        {
-////
-////        }
-//
-//
-//
-//
-////        final int kTO_GENERATE = 999999;
-////        final int kTO_ADD = 100000;
-////
-////        ArrayList<Integer> integerList = new ArrayList<>();
-////
-////        for (int i = kTO_GENERATE; i > 0; i--)
-////        {
-////            integerList.add(i);
-////        }
-////
-////        Collections.shuffle(integerList);
-////
-////        for (int i = 0; i < kTO_ADD; i++)
-////        {
-////            double randomNumber = Math.random() + integerList.get(i);
-////            System.out.println(randomNumber);
-////        }
-//
-//
-////        //add 1st few values to binarySearchTree
-////        BST<Integer> bst = new BST<>();
-////        for(int i = 0; i < kTO_ADD; i++)
-////        {
-////            bst.insert(numberList.get(i));
-////        }
-//
-////        //test contains method
-////        System.out.println("Tree contains 5: " + bst.contains(5));
-////        System.out.println("Tree contains 90000: " + bst.contains(90000));
-////        System.out.println();
-////
-////        //test remove method
-////        System.out.println("Running remove method...");
-////        bst.remove(5);
-////
-////        //verify remove method works and contains reports accurately
-////        System.out.println();
-////        System.out.println("Tree contains 5: " + bst.contains(5));
-////        System.out.println("Tree contains 90000: " + bst.contains(90000));
-//        }
-//}
-
 
 public class Main
 {
-
-    public static void main(String[] args)
+    public static void main(String[] args) throws IOException
     {
-
         System.out.println("JavaII_HW5_hashTable" + "\n");
 
+        final int kMAX_SIZE = 100000;
         final int kTO_REMOVE = 20000;
 
-        //add values to HashSet
-        Hashtable<Integer, Double> doubleSet = new Hashtable<>();
+        //create two hashTables (made a 3rd)
+//        LinearProbingHashTable LinearProbingHashTable = new LinearProbingHashTable(kMAX_SIZE);
+        QuadraticProbingHashTable QuadraticProbingHashTable = new QuadraticProbingHashTable(kMAX_SIZE);
+        DoubleHashingTable DoubleHashingTable = new DoubleHashingTable(kMAX_SIZE);
 
         //create random doubles
         randomDoubleGenerator.getRandomDoubles();
 
-        //add pre-defined amount of key/values pairs to table
+        //add pre-defined amount of key/values pairs to both tables (all 3)
         for (int i = 0; i < randomDoubleGenerator.kDOUBLES_TO_GENERATE; i++)
         {
-            doubleSet.put(i, randomDoubleGenerator.randomDoubleList.get(i));
+            double newRandomDouble = randomDoubleGenerator.randomDoubleList.get(i);
+            String count = Integer.toString(i);
+
+//            LinearProbingHashTable.insert(count, Double.toString(newRandomDouble));
+            DoubleHashingTable.insert(i, Double.toString(newRandomDouble));
+            QuadraticProbingHashTable.insert(count, Double.toString(newRandomDouble));
         }
 
-        Enumeration names;
-        names = doubleSet.keys();
-
-        while (names.hasMoreElements())
+        //remove pre-defined amount of key/values pairs from both tables (all 3)
+        for (int i = 0; i < kTO_REMOVE; i++)
         {
-            Integer key = (Integer) names.nextElement();
-            System.out.println("[" + key + " / " + doubleSet.get(key));
+            String count = Integer.toString(i);
+
+//            LinearProbingHashTable.remove(count);
+            DoubleHashingTable.remove(i);
+            QuadraticProbingHashTable.remove(count);
         }
 
+        //print test results for LinearProbingHashTable
+//        LinearProbingHashTable.printHashTable("LinearProbingHashTable");
+//        System.out.println("LinearProbingHashTable.size = " + LinearProbingHashTable.getSize());
+//        System.out.println("\n");
 
-//        //remove pre-defined amount of key/values pairs from table
-//        for (int i = kTO_REMOVE; i >= 0; i--)
-//        {
-//            doubleSet.remove(i);
-//        }
+        //print test results for DoubleHashingTable
+        DoubleHashingTable.printHashTable("DoubleHashingTable");
+        System.out.println("DoubleHashingTable.size = " + DoubleHashingTable.getSize());
+        System.out.println("\n");
 
+        //print test results for QuadraticProbingHashTable
+        QuadraticProbingHashTable.printHashTable("QuadraticProbingHashTable");
+        System.out.println("QuadraticProbingHashTable.size = " + QuadraticProbingHashTable.getSize());
+        System.out.println("\n");
 
-//        double myDouble = Double.parseDouble(input);
-//
-//
-//        }
-//
-//        System.out.println(doubleSet);
-//
-//            System.out.println(doubleSet);
+        File file1 = new File("DoubleHashingTable.txt");
+        FileWriter fileWriter1 = new FileWriter(file1);
+        BufferedWriter writer1 = new BufferedWriter(fileWriter1);
+        ArrayList<String> arrayList1 = new ArrayList<>();
 
+        File file2 = new File("QuadraticProbingHashTable.txt");
+        FileWriter fileWriter2 = new FileWriter(file2);
+        BufferedWriter writer2 = new BufferedWriter(fileWriter2);
+        ArrayList<String> arrayList2 = new ArrayList<>();
 
-//        MySet<Double> set = new MyHashSet<>();
-//
-//        set.put(1.5);
-//        set.put(4.6);
-//        set.put(1.5);
-//        set.put(6.7);
-//
-//        System.out.println(set.contains(6.7));
-//        System.out.println(set.contains(8.0));
-//        System.out.println("");
-//
-//        MySet<String> stringSet = new MyHashSet<>();
-//
-//        stringSet.put("pollinating sandboxes");
-//        stringSet.put("schoolworks = perversive");
-//        stringSet.put("Microcomputers: the unredeemed lollipop...");
-//
-//        System.out.println(stringSet.contains("Microcomputers: the unredeemed lollipop..."));
-//        System.out.println("");
+        writer1.write("DoubleHashingTable.txt" + "\n");
+        writer2.write("QuadraticProbingHashTable.txt" + "\n");
 
+        System.out.println("DoubleHashingTable");
+        for (int i = 0; i < DoubleHashingTable.getSize(); i++)
+        {
+            String emp1 = DoubleHashingTable.get(i);
+            String s1 = "[" + i + " " + emp1 + "]";
+            System.out.println("s1 = " + s1);
+            arrayList1.add(s1);
+            writer1.write(s1 + "\n");
+        }
+
+        System.out.println();
+        System.out.println("QuadraticProbingHashTable");
+        for (int i = 0; i < QuadraticProbingHashTable.getSize()-2; i++) //TODO find ArrayOutOfBounds Problem
+        {
+            String emp2 = QuadraticProbingHashTable.get(String.valueOf(i));
+            String s2 = ("[" + i + " " + emp2 + "]");
+            System.out.println("s2 = " + s2);
+            arrayList2.add(s2);
+            writer2.write(s2 + "\n");
+        }
+
+        writer1.flush();
+        writer2.flush();
     }
 }
